@@ -1,0 +1,7 @@
+export enum SubModulosAgenda {
+    AGENDA = "AGENDA",
+    CLIENTES = "CLIENTES",
+    PROFISSIONAIS = "PROFISSIONAIS",
+    PESSOAS = "PESSOAS",
+    USUARIOS = "USUARIOS"
+}
