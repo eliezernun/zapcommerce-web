@@ -8,5 +8,4 @@ export type Usuario ={
     bloqueado: boolean,
     senha_provisoria: boolean,
     funcao: Funcao,
-
 }
