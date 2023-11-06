@@ -3,5 +3,9 @@ export enum SubModulosAgenda {
     CLIENTES = "CLIENTES",
     PROFISSIONAIS = "PROFISSIONAIS",
     PESSOAS = "PESSOAS",
-    USUARIOS = "USUARIOS"
+    USUARIOS = "USUARIOS",
+    HISTORICO = "HISTORICO",
+    MENSAGEM = "MENSAGEM",
+    CAIXA = "CAIXA"
 }
+

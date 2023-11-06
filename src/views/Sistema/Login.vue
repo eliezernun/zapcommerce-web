@@ -85,7 +85,6 @@ export default {
     data: () => ({
       visible: false,
     }),
-
     methods: {
       async autenticar () {
           const resp = await login({email: 'eliezernun@gmail.com', senha:'QMwNA@bF'})
