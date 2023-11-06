@@ -48,6 +48,9 @@ export const userStore = defineStore('user', {
     },
     getEmpresa () : Empresa | null {
       return this.empresa;
+    },
+    getAutenticado() : boolean {
+      return this.atuenticado;
     }
   },
 })
