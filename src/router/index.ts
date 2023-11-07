@@ -3,6 +3,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from '@/views/Sistema/Login.vue'
 import { userStore } from '@/store/user'
 import Sistemas from '@/views/Sistema/Sistemas.vue'
+import AgendaMain from '@/views/agenda/AgendaMain.vue'
+import Clientes from '@/views/agenda/Clientes.vue'
+import Usuarios from '@/views/agenda/Usuarios.vue'
+import { Modulos } from '@/types/enums/modulos'
 
 const routes = [
   {
@@ -10,8 +14,24 @@ const routes = [
     component: Login,
   },
   {
-    path:'/sistemas',
-    component: Sistemas
+    path: '/sistemas',
+    component: Sistemas,
+    meta: { autenticado: true }
+  },
+  {
+    path: '/agenda',
+    component: AgendaMain,
+    meta: { autenticado: true, contexto: Modulos.AGENDA },
+    children: [
+      {
+        path: '/clientes',
+        component: Clientes
+      },
+      {
+        path: '/usuarios',
+        component: Usuarios
+      }
+    ]
   }
 ]
 
@@ -20,10 +40,10 @@ const router = createRouter({
   routes,
 })
 
-router.beforeEach((to, from, next)=>{
-const storage = userStore();
-const autenticado = storage.getAutenticado();
-  if(to.matched.some(record => record.meta.autenticado) && !autenticado){
+router.beforeEach((to, from, next) => {
+  const storage = userStore();
+  const autenticado = storage.getAutenticado();
+  if (to.matched.some(record => record.meta.autenticado) && !autenticado) {
     next('/')
     return;
   }

@@ -1,4 +1,4 @@
 export enum Modulos {
-    AGENDA,
-    LOJA
+    AGENDA = "AGENDA",
+    LOJA ="LOJA"
 }

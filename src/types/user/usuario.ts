@@ -5,7 +5,7 @@ export type Usuario ={
     id_usuario: number,
     email_principal: string,
     email_recuperacao: string,
-    modulos: Array<Modulos>,
+    outros_sistemas: Modulos[],
     ativo: boolean,
     bloqueado: boolean,
     senha_provisoria: boolean,

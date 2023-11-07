@@ -4,6 +4,7 @@ import { Pessoa } from '@/types/pessoa/pessoa';
 import { LoginResponse } from '@/types/api/loginResponse';
 import { Empresa } from '@/types/empresa/empresa';
 import { AgendaPermicoes } from '@/types/permicoes/AgendaPermicoes';
+import { Modulos } from '@/types/enums/modulos';
 
 export const userStore = defineStore('user', {
   state: () => {
@@ -14,7 +15,8 @@ export const userStore = defineStore('user', {
       usuario: null as Usuario | null,
       pessoa: null as Pessoa | null,
       empresa: null as Empresa | null,
-      permicoes: null as AgendaPermicoes | null
+      permicoes: null as AgendaPermicoes | null,
+      contexto : null as Modulos | null
     }
   },
   actions: {
@@ -51,6 +53,15 @@ export const userStore = defineStore('user', {
     },
     getAutenticado() : boolean {
       return this.atuenticado;
+    },
+    getModulos() : Modulos[] | undefined {
+      return this.usuario?.outros_sistemas;
+    },
+    setContexto(modulo : Modulos | null):void{
+      this.contexto = modulo;
+    },
+    getContexto() : Modulos | null {
+      return this.contexto
     }
   },
 })
