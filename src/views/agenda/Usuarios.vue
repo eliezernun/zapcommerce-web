@@ -1,5 +1,5 @@
 <template>
-    <div class="usuarios-container">
+    <div class="pessoas-container">
         <v-card width="800">
             <v-card-item>
                 <v-card>
@@ -22,7 +22,7 @@ import UserList from '@/components/UserList.vue';
 }
 </script>
 <style>
-.usuarios-container {
+.pessoas-container {
     margin: 55px;
     width: 80vw;
     height: 80vh;

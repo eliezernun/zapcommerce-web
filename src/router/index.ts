@@ -19,16 +19,24 @@ const routes = [
     meta: { autenticado: true }
   },
   {
+    path: '/perfil',
+    meta: { autenticado: true }
+  },
+  {
     path: '/agenda',
     component: AgendaMain,
     meta: { autenticado: true, contexto: Modulos.AGENDA },
     children: [
       {
-        path: '/clientes',
+        path: '/agenda/clientes',
         component: Clientes
       },
       {
-        path: '/usuarios',
+        path:'/agenda/colaboradores',
+        component: Usuarios
+      },
+      {
+        path: '/agenda/usuarios',
         component: Usuarios
       }
     ]

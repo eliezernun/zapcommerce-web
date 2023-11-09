@@ -8,11 +8,10 @@
           </template>
         </v-list-item>
         <v-divider></v-divider>
-        <v-list density="compact" nav>
-          <v-list-item prepend-icon="mdi-home-city" title="Home" value="home"></v-list-item>
-          <v-list-item prepend-icon="mdi-account" title="My Account" value="account"></v-list-item>
-          <v-list-item prepend-icon="mdi-account-group-outline" title="Clientes" value="clientes" @click="navigate('/clientes')"></v-list-item>
-          <v-list-item prepend-icon="" title="Usuários" value="Usuarios" @click="navigate('/usuarios')"></v-list-item>
+        <v-list density="compact" nav v-for="l in links">
+          <v-list-item :prepend-icon="l.icon" :title="l.text" :value="l.index" @click="navigate(l.path)"> <v-tooltip
+              activator="parent" location="start">{{ l.text }}</v-tooltip></v-list-item>
+          <v-divider></v-divider>
         </v-list>
       </v-navigation-drawer>
       <v-main style="height: 100vh">
@@ -24,22 +23,25 @@
 <script lang="ts">
 import { userStore } from '@/store/user'
 import type { Pessoa } from '@/types/pessoa/pessoa';
+import { AgendaLinksNavegacao } from '@/router/agenda/index'
+import { Route } from "@/types/router/route";
 export default {
   name: 'AgendaMain',
   data() {
     return {
       drawer: true,
       rail: true,
-      pessoa: undefined as Pessoa | undefined
+      pessoa: undefined as Pessoa | undefined,
+      links: undefined as Route[] | undefined
     }
   },
-  beforeMount (){
+  beforeMount() {
     let pessoa = userStore().getPessoa()
-    console.info(pessoa)
-    this.pessoa = pessoa != null ?  pessoa : undefined
+    this.pessoa = pessoa != null ? pessoa : undefined
+    this.links = AgendaLinksNavegacao();
   },
   methods: {
-    navigate(route : string){
+    navigate(route: string) {
       this.$router.push(route);
     }
   }

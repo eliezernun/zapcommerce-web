@@ -16,7 +16,7 @@ export const userStore = defineStore('user', {
       usuario: null as Usuario | null,
       pessoa: null as Pessoa | null,
       empresa: null as Empresa | null,
-      permicoes: null as AgendaPermicoes | null,
+      permicoesAgenda: null as AgendaPermicoes[] | null,
       contexto : null as Modulos | null
     }
   },
@@ -27,7 +27,7 @@ export const userStore = defineStore('user', {
         this.usuario = data?.detalhes_usuario.usuario || null;
         this.pessoa = data?.detalhes_usuario.pessoa || null;
         this.empresa = data?.detalhes_usuario.empresa || null;
-        this.permicoes = data?.detalhes_usuario.permicoes || null;
+        this.permicoesAgenda = data?.detalhes_usuario.permicoes || null;
         this.atuenticado = true;
         if(data){
           let hoje = new Date();
@@ -55,8 +55,8 @@ export const userStore = defineStore('user', {
     getUsuario() : Usuario | null {
       return this.usuario
     },
-    getPermicoes() : AgendaPermicoes | null {
-      return this.permicoes;
+    getPermicoes() : AgendaPermicoes[] | null {
+      return this.permicoesAgenda;
     },
     getPessoa () : Pessoa | null {
       return this.pessoa;
