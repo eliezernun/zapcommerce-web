@@ -5,6 +5,7 @@ import { LoginResponse } from '@/types/api/loginResponse';
 import { Empresa } from '@/types/empresa/empresa';
 import { AgendaPermicoes } from '@/types/permicoes/AgendaPermicoes';
 import { Modulos } from '@/types/enums/modulos';
+import { createLocalSession, loadSessionFromLocalStore } from '@/services/localSession';
 
 export const userStore = defineStore('user', {
   state: () => {
@@ -20,15 +21,27 @@ export const userStore = defineStore('user', {
     }
   },
   actions: {
-    inicializar(data : LoginResponse ) : boolean{
-        this.token = data.client_token;
-        this.tokens_expiration = data.token_expires;
-        this.usuario = data.detalhes_usuario.usuario;
-        this.pessoa = data.detalhes_usuario.pessoa;
-        this.empresa = data.detalhes_usuario.empresa;
-        this.permicoes = data.detalhes_usuario.permicoes;
+    inicializar(data : LoginResponse | undefined) : boolean{        
+        this.token = data?.client_token || '';
+        this.tokens_expiration = data?.token_expires || 0;
+        this.usuario = data?.detalhes_usuario.usuario || null;
+        this.pessoa = data?.detalhes_usuario.pessoa || null;
+        this.empresa = data?.detalhes_usuario.empresa || null;
+        this.permicoes = data?.detalhes_usuario.permicoes || null;
         this.atuenticado = true;
+        if(data){
+          let hoje = new Date();
+          data.criado_em = data.criado_em != null ? data.criado_em : hoje
+        }
+        createLocalSession(data);
         return true;
+    },
+    recuperarSessao(){
+      let session = loadSessionFromLocalStore();
+      if( session === undefined || session === null){
+        return false;
+      }
+      return this.inicializar(session)
     },
     isAutenticado(){
       return this.atuenticado;
@@ -62,6 +75,6 @@ export const userStore = defineStore('user', {
     },
     getContexto() : Modulos | null {
       return this.contexto
-    }
+    },
   },
 })

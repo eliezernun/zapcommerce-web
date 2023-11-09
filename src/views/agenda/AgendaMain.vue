@@ -2,7 +2,7 @@
   <v-card>
     <v-layout>
       <v-navigation-drawer v-model="drawer" :rail="rail" permanent @click="rail = false">
-        <v-list-item prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg" title="John Leider" nav>
+        <v-list-item prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg" :title="pessoa?.pessoa_nome" nav>
           <template v-slot:append>
             <v-btn variant="text" icon="mdi-chevron-left" @click.stop="rail = !rail"></v-btn>
           </template>
@@ -22,13 +22,21 @@
   </v-card>
 </template>
 <script lang="ts">
+import { userStore } from '@/store/user'
+import type { Pessoa } from '@/types/pessoa/pessoa';
 export default {
   name: 'AgendaMain',
   data() {
     return {
       drawer: true,
       rail: true,
+      pessoa: undefined as Pessoa | undefined
     }
+  },
+  beforeMount (){
+    let pessoa = userStore().getPessoa()
+    console.info(pessoa)
+    this.pessoa = pessoa != null ?  pessoa : undefined
   },
   methods: {
     navigate(route : string){

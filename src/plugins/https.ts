@@ -1,7 +1,12 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import router from '@/router';
+import { estado } from './estado';
+const loading = (status : boolean) =>{
+    estado.carregando = status;
+}
 
 function onRequestFullFilled(config: any) {
+    loading(true)
     if (!config.headers) {
         config.headers = {};
     }
@@ -13,14 +18,17 @@ function onRequestFullFilled(config: any) {
 }
 
 function onRequestRejected(error: any) {
+    loading(false)
     return Promise.reject(error);
 }
 
 function onResponseFulfilled(response: AxiosResponse<any>) {
+    loading(false)
     return response;
 }
 
 function onResponseRejected(error: any) {
+    loading(false)
     if (error.response) {
         if (error.response.status == 401 || error.response.status === 403) {
             router.push('/login');
@@ -40,7 +48,7 @@ const http = axios.create({
     headers:{
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
-      }
+      },
 });
 
 http.interceptors.request.use(onRequestFullFilled, onRequestRejected);

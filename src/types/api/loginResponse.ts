@@ -13,6 +13,7 @@ export type LoginResponse ={
         pessoa: Pessoa,
         empresa: Empresa,
         permicoes: AgendaPermicoes
-    }
+    },
+    criado_em: Date;
 
 }
