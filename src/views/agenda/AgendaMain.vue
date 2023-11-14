@@ -18,6 +18,7 @@
         <router-view></router-view>
       </v-main>
     </v-layout>
+    <Perfil @close="" :exibir="drawer" :data="null"/>
   </v-card>
 </template>
 <script lang="ts">
@@ -25,14 +26,25 @@ import { userStore } from '@/store/user'
 import type { Pessoa } from '@/types/pessoa/pessoa';
 import { AgendaLinksNavegacao } from '@/router/agenda/index'
 import { Route } from "@/types/router/route";
+import Perfil from "@/components/Perfil.vue"
+import { modalPerfil } from '@/plugins/estado';
+
 export default {
   name: 'AgendaMain',
+  components: { Perfil },
+
   data() {
     return {
       drawer: true,
       rail: true,
       pessoa: undefined as Pessoa | undefined,
-      links: undefined as Route[] | undefined
+      links: undefined as Route[] | undefined,
+      exibir: false
+    }
+  },
+  computed:{
+    modalPerfil (): boolean{
+      return modalPerfil.exibir;
     }
   },
   beforeMount() {

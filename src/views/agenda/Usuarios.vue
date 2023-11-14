@@ -6,7 +6,6 @@
                     <UserList :usuarios="[]"/>
                 </v-card>
             </v-card-item>
-
             <v-card-text>
                 This is content
             </v-card-text>

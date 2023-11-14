@@ -19,10 +19,6 @@ const routes = [
     meta: { autenticado: true }
   },
   {
-    path: '/perfil',
-    meta: { autenticado: true }
-  },
-  {
     path: '/agenda',
     component: AgendaMain,
     meta: { autenticado: true, contexto: Modulos.AGENDA },

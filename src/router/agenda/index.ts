@@ -12,7 +12,7 @@ const agendaRoutes: Route[] = [
   },
   {
     text: 'Meu Perfil',
-    path: '/profile',
+    path: '/perfil',
     icon: 'mdi-face-man-profile',
     modulo: SubModulosAgenda.GERAL,
     index:2
