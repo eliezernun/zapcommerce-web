@@ -63,7 +63,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
 
-          <v-btn text="Close Dialog" @click="isActive.value = false"></v-btn>
+          <v-btn text="Close Dialog" @click=" () => alert('1')"></v-btn>
         </v-card-actions>
       </v-card>
     </template>
@@ -73,10 +73,12 @@
 <script lang="ts">
 import { emailValid } from '@/utils/Email'
 import { alterarEmail } from '@/services/email';
+import { userStore } from '@/store/user'
 export default {
   props: {
     exibir: Boolean,
-    data: null as unknown as Object | Object,
+    nome: String,
+    nascimento: Date
   },
   data() {
     return {
@@ -93,12 +95,19 @@ export default {
         nome: '',
         email: '',
         emailRecuperacao: '',
-        formattedDate: '',
+        formattedDate: null as unknown as String | String
       },
       rulesEmail: [(value: any) => !!value || 'Preenchimento obrigatório!',
       (value: any) => !!emailValid(value) || 'O email informado é invalido!'
       ]
     };
+  },
+  beforeMount() {
+      let user = userStore().getUsuario()
+      this.formData.email = user?.email_principal != undefined ? user?.email_principal : ''
+      this.formData.emailRecuperacao = user?.email_recuperacao != undefined ? user?.email_recuperacao : ''
+      this.formData.formattedDate = this.nascimento != undefined ? this.nascimento : '';
+      this.formData.nome = this.nome != undefined ? this.nome : '';
   },
   watch: {
     exibir(newVal) {
@@ -124,9 +133,7 @@ export default {
     formatDate() {
       const inputValue = this.formData.formattedDate.replace(/\D/g, ''); // Remove non-numeric characters
       if (inputValue.length === 8) {
-        const day = inputValue.substring(0, 2);
-        const month = inputValue.substring(2, 4);
-        const year = inputValue.substring(4, 8);
+        
         this.formData.formattedDate = `${day}/${month}/${year}`;
       }
     },
@@ -143,7 +150,7 @@ export default {
         id_usuario: 2,
         
       }
-      const validar = alterarEmail()
+      //const validar = alterarEmail()
     }
 
 

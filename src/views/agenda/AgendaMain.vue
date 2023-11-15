@@ -18,7 +18,7 @@
         <router-view></router-view>
       </v-main>
     </v-layout>
-    <Perfil @close="" :exibir="drawer" :data="null"/>
+    <Perfil @close="" :exibir="drawer" :nome="pessoa?.pessoa_nome" :nascimento="pessoa?.pessoa_nascimento"/>
   </v-card>
 </template>
 <script lang="ts">

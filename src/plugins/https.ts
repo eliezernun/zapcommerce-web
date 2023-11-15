@@ -43,7 +43,7 @@ function onResponseRejected(error: any) {
 }
 
 const http = axios.create({
-    baseURL: 'http://192.168.15.61:8080',
+    baseURL: 'http://localhost:8080',
     timeout: 60 * 6000,
     headers:{
         'Content-Type': 'application/json',
