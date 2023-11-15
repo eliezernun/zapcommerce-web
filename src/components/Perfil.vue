@@ -74,6 +74,7 @@
 import { emailValid } from '@/utils/Email'
 import { alterarEmail } from '@/services/email';
 import { userStore } from '@/store/user'
+import { dateFormatter, dateConverter } from '@/utils/Date';
 export default {
   props: {
     exibir: Boolean,
@@ -106,7 +107,7 @@ export default {
       let user = userStore().getUsuario()
       this.formData.email = user?.email_principal != undefined ? user?.email_principal : ''
       this.formData.emailRecuperacao = user?.email_recuperacao != undefined ? user?.email_recuperacao : ''
-      this.formData.formattedDate = this.nascimento != undefined ? this.nascimento : '';
+      this.formData.formattedDate = this.nascimento != undefined ? dateConverter(String(this.nascimento)) : '';
       this.formData.nome = this.nome != undefined ? this.nome : '';
   },
   watch: {
@@ -133,8 +134,7 @@ export default {
     formatDate() {
       const inputValue = this.formData.formattedDate.replace(/\D/g, ''); // Remove non-numeric characters
       if (inputValue.length === 8) {
-        
-        this.formData.formattedDate = `${day}/${month}/${year}`;
+        this.formData.formattedDate = dateFormatter(inputValue)
       }
     },
     editEmailRecuperacao() {
