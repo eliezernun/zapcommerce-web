@@ -15,7 +15,7 @@ const agendaRoutes: Route[] = [
     path: '/perfil',
     icon: 'mdi-face-man-profile',
     modulo: SubModulosAgenda.GERAL,
-    index:2
+    index: 2
   },
   {
     text: 'Agenda',

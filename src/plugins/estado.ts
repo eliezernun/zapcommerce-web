@@ -8,3 +8,12 @@ export const estado = reactive({
 export const modalPerfil = reactive({
   exibir: false
 })
+
+export const sneacksController = reactive({
+    info:{
+      exibir: false,
+      text: '',
+      timeout:  5000,
+      tipo: '',
+    },
+})

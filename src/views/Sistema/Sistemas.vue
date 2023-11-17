@@ -33,6 +33,7 @@ export default {
   data: () => ({
     buttons: <ButtonItem[]>([])
   }),
+
   beforeMount() {
     let modulos: Modulos[] | undefined = this.store.getUsuario()?.outros_sistemas;
     if( modulos?.length == 1 ){
@@ -52,10 +53,16 @@ export default {
       }
     })
   },
+  mounted() {
+      this.notificar()
+  },
   methods: {
     pushRoute(r: string, contexto: Modulos){
       this.store.setContexto(contexto);
       this.$router.push(r);
+    },
+    notificar (){
+      
     }
   },
 };
