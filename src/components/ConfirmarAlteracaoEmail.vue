@@ -1,5 +1,4 @@
 <template>
-    
         <v-card class="py-8 px-6 text-center mx-auto ma-4" style="align-items: center;" elevation="12" max-width="700"
             width="100%">
             <h3 class="text-h6 mb-4">Verificar email</h3>

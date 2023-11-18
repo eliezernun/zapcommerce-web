@@ -5,7 +5,7 @@ import { LoginResponse } from '@/types/api/loginResponse';
 import { Empresa } from '@/types/empresa/empresa';
 import { AgendaPermicoes } from '@/types/permicoes/AgendaPermicoes';
 import { Modulos } from '@/types/enums/modulos';
-import { createLocalSession, loadSessionFromLocalStore } from '@/services/localSession';
+import { createLocalSession, loadSessionFromLocalStore, destruriSessao } from '@/services/localSession';
 
 export const userStore = defineStore('user', {
   state: () => {
@@ -76,5 +76,15 @@ export const userStore = defineStore('user', {
     getContexto() : Modulos | null {
       return this.contexto
     },
+    destruir() : void {
+      this.token = '',
+      this.tokens_expiration = 0;
+      this.usuario = null;
+      this.pessoa = null;
+      this.empresa = null;
+      this.permicoesAgenda = null;
+      this.atuenticado = false;
+      destruriSessao();
+    }
   },
 })

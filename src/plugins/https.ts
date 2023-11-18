@@ -37,7 +37,7 @@ function onResponseRejected(error: any) {
     loading(false)
     if (error.response) {
         if (error.response.status == 401 || error.response.status === 403) {
-            router.push('/login');
+            router.push({path:'/logout', params:{ expirado : true }});
         }
     } else if (error.request) {
         console.error('No response received:', error.request);

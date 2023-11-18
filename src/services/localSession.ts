@@ -25,7 +25,7 @@ export function createLocalSession(data: LoginResponse | undefined) {
     }
 }
 
-export function loadSessionFromLocalStore(): LoginResponse | undefined  {
+export function loadSessionFromLocalStore(): LoginResponse | undefined {
     let info = localStorage.getItem('zapcommerce');
     if (info == null || info == undefined) {
         return undefined;
@@ -34,9 +34,13 @@ export function loadSessionFromLocalStore(): LoginResponse | undefined  {
     let data_sessao = new Date(data.criado_em).getTime() + 3 * 60 * 60 * 1000
     let data_atual = new Date().getTime();
     let sessao_valida = data_atual > data_sessao ? true : false
-    if (sessao_valida){
+    if (sessao_valida) {
         localStorage.clear()
         return undefined;
     }
     return data;
+}
+
+export function destruriSessao() {
+    localStorage.removeItem('zapcommerce')
 }

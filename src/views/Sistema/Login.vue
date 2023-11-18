@@ -28,7 +28,7 @@
           class="text-caption text-decoration-none text-blue"
           href="#"
           rel="noopener noreferrer"
-          target="_blank"
+          @click.prevent="navigate"
         >
           Esqueceu sua senha?</a>
       </div>
@@ -79,6 +79,7 @@
   </div>
 </template>
 <script lang="ts">
+import router from '@/router';
 import { login } from '@/services/login'
 export default {
     name: 'Login',
@@ -89,6 +90,9 @@ export default {
       async autenticar () {
           const resp = await login({email: 'silvanalucca.edu@gmail.com', senha:'WrAS@lnS'})
           if(resp === true) this.$router.push('/sistemas')
+      },
+      navigate(){
+        this.$router.push('/recuperar-senha')
       }
     }
 }

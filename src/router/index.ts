@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from '@/views/Sistema/Login.vue'
 import { userStore } from '@/store/user'
 import Sistemas from '@/views/Sistema/Sistemas.vue'
+import Logout from '@/views/Sistema/Logout.vue'
+import RecuperarSenha from '@/views/Sistema/RecuperarSenha.vue'
 import AgendaMain from '@/views/agenda/AgendaMain.vue'
 import Clientes from '@/views/agenda/Clientes.vue'
 import Usuarios from '@/views/agenda/Usuarios.vue'
@@ -12,6 +14,14 @@ const routes = [
   {
     path: '/',
     component: Login,
+  },
+  {
+    path: '/sair',
+    component: Logout,
+  },
+  {
+    path: '/recuperar-senha',
+    component: RecuperarSenha,
   },
   {
     path: '/sistemas',
