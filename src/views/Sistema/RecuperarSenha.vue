@@ -5,7 +5,10 @@
                 <div v-if="currentStep === 1">
                     <!-- Step 1 content -->
                     <v-card elevation="0">
-                        <v-card-title>Identificação</v-card-title>
+                        <v-card-text>
+                            <v-row><v-spacer></v-spacer><v-img width="96" height="96" src="https://zapcommerce.blob.core.windows.net/imagens-frontend/public/password-96.png"></v-img><v-spacer></v-spacer></v-row>
+                        </v-card-text>
+                        <v-card-title>Esqueceu sua senha?</v-card-title>
                         <v-card-subtitle>Informe o email de acesso:</v-card-subtitle>
                         <v-card-text>
                             <v-row>
