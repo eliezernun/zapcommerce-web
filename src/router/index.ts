@@ -8,6 +8,7 @@ import RecuperarSenha from '@/views/Sistema/RecuperarSenha.vue'
 import AgendaMain from '@/views/agenda/AgendaMain.vue'
 import Clientes from '@/views/agenda/Clientes.vue'
 import Usuarios from '@/views/agenda/Usuarios.vue'
+import NovaSenhaToken from '@/views/Sistema/NovaSenhaToken.vue'
 import { Modulos } from '@/types/enums/modulos'
 
 const routes = [
@@ -22,6 +23,11 @@ const routes = [
   {
     path: '/recuperar-senha',
     component: RecuperarSenha,
+  },
+  {
+    path: '/recuperar-senha/:token',
+    props: true,
+    component: NovaSenhaToken
   },
   {
     path: '/sistemas',

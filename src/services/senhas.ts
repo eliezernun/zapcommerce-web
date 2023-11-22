@@ -2,17 +2,17 @@ import https from "@/plugins/https"
 import { sucesso, erro } from "@/utils/toast";
 import { estado } from "@/plugins/estado";
 
-export const validarUsuario = async (email: string) => {
-    return await handleRequest('/validar', email)
+export const validar = async ( data : {email: string} ) => {
+    return await handleRequest('/senhas/validar', data)
 }
 
 export const recuperar = async (dados: 
     { recuperacao_email_principal: string, 
         recuperacao_email: string, 
-        recuperacao_nascimento: string, 
+        recuperacao_nascimento: Date, 
         recuperacao_nome: string }) => {
     
-    return await handleRequest('/gerar', dados);
+    return await handleRequest('/senhas/reset', dados);
 
 }
 
