@@ -43,7 +43,7 @@
               </v-col>
             </v-row>
           </v-container>
-          <small>*indicates required field</small>
+          <small>*indica os campos obrigatórios</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
