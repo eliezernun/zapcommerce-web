@@ -22,6 +22,9 @@ export const validarToken = async ( token: string[] | string ) =>{
         return false;
     }
 }
+export const tokenTrocaSenha = async (req:{senha: string, senha_confimacao: string, token: string | string[]}) => {
+        return handleRequest('senhas/token/recuperar', req);
+}
 export const recuperar = async (dados: 
     { recuperacao_email_principal: string, 
         recuperacao_email: string, 

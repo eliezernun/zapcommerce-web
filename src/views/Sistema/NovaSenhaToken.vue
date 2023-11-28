@@ -28,7 +28,7 @@
                     <small v-if="form.senha_replica && form.senha_replica.length >= 8 && form.senha !== form.senha_replica"><strong class="text-red-lighten-1">As senhas não são iguais</strong></small>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn :disabled="form.senha_replica && form.senha_replica.length >= 8 && form.senha !== form.senha_replica">Confirmar</v-btn>
+                        <v-btn @click="enviar" :disabled="form.senha_replica != form.senha ? true : false || form?.senha.length < 7">Confirmar</v-btn>
                         <v-spacer></v-spacer>
                     </v-card-actions>
                 </v-card>
@@ -46,9 +46,8 @@
     </div>
 </template>
 <script lang="ts">
-import { validarToken } from '@/services/senhas';
-import { throwStatement } from '@babel/types';
-import { formToJSON } from 'axios';
+import { tokenTrocaSenha, validarToken } from '@/services/senhas';
+
 export default {
     name: 'NovaSenhaToken',
     data() {
@@ -58,9 +57,10 @@ export default {
             show1: false,
             show2: false,
             error: true,
+            disable: true,
             form: {
-                senha: null as unknown as string | string,
-                senha_replica: null as unknown as string | string
+                senha: '',
+                senha_replica: '',
             },
             rules: {
                 required: (value: string) => !!value || 'Preenchimento obrigatório!',
@@ -84,9 +84,16 @@ export default {
         }
         // validar()
     },
+   
     methods: {
-        enviar() {
-
+        async enviar() {
+            let troca = {
+                senha: this.form.senha, 
+                senha_confimacao: this.form.senha_replica,
+                token: this.token
+            }
+            await tokenTrocaSenha(troca)
+            this.$router.push('/')
         },
     }
 }
