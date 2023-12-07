@@ -2,35 +2,37 @@ import https from "@/plugins/https"
 import { sucesso, erro } from "@/utils/toast";
 import { estado } from "@/plugins/estado";
 
-export const validar = async ( data : {email: string} ) => {
+export const validar = async (data: { email: string }) => {
     return await handleRequest('/senhas/validar', data)
 }
-export const validarToken = async ( token: string[] | string ) =>{
-    try{
+export const validarToken = async (token: string[] | string) => {
+    try {
         const response = await https.get(`/senhas/token/${token}`)
         console.info(response.status)
-        if(response.status === 200){
+        if (response.status === 200) {
 
             return true;
         }
-        else{
+        else {
             erro("link inválido ou já reutilizado!")
             return false;
         }
-    } catch(error: any){
+    } catch (error: any) {
         erro("link inválido ou já reutilizado!")
         return false;
     }
 }
-export const tokenTrocaSenha = async (req:{senha: string, senha_confimacao: string, token: string | string[]}) => {
-        return handleRequest('senhas/token/recuperar', req);
+export const tokenTrocaSenha = async (req: { senha: string, senha_confimacao: string, token: string | string[] }) => {
+    return handleRequest('senhas/token/recuperar', req);
 }
-export const recuperar = async (dados: 
-    { recuperacao_email_principal: string, 
-        recuperacao_email: string, 
-        recuperacao_nascimento: Date, 
-        recuperacao_nome: string }) => {
-    
+export const recuperar = async (dados:
+    {
+        recuperacao_email_principal: string,
+        recuperacao_email: string,
+        recuperacao_nascimento: Date,
+        recuperacao_nome: string
+    }) => {
+
     return await handleRequest('/senhas/reset', dados);
 
 }

@@ -9,7 +9,7 @@
         </v-list-item>
         <v-divider></v-divider>
         <v-list density="compact" nav v-for="l in links">
-          <v-list-item :prepend-icon="l.icon" :title="l.text" :value="l.index" @click="navigate(l.path)"> <v-tooltip
+          <v-list-item :prepend-icon="l.icon" :title="l.text" :value="l.index" @click="handle(l.path)"> <v-tooltip
               activator="parent" location="start">{{ l.text }}</v-tooltip></v-list-item>
           <v-divider></v-divider>
         </v-list>
@@ -18,7 +18,7 @@
         <router-view></router-view>
       </v-main>
     </v-layout>
-    <Perfil @close="" :exibir="drawer" :nome="pessoa?.pessoa_nome" :nascimento="pessoa?.pessoa_nascimento"/>
+    <Perfil @close="close" :exibir="exibir" :nome="pessoa?.pessoa_nome" :nascimento="pessoa?.pessoa_nascimento"/>
   </v-card>
 </template>
 <script lang="ts">
@@ -53,8 +53,19 @@ export default {
     this.links = AgendaLinksNavegacao();
   },
   methods: {
+    handle(route : string ){
+      if(!route.includes('/perfil')){
+          this.navigate(route);
+      }
+      else{
+        this.exibir = true;
+      }
+    },
     navigate(route: string) {
       this.$router.push(route);
+    },
+    close(){
+      this.exibir = false;
     }
   }
 }
