@@ -88,7 +88,7 @@ export default {
     }),
     methods: {
       async autenticar () {
-          const resp = await login({email: 'silvanalucca.edu@gmail.com', senha:'WrAS@lnS'})
+          const resp = await login({email: 'eliezernun@gmail.com', senha:'ZHpky@m$'})
           if(resp === true) this.$router.push('/sistemas')
       },
       navigate(){

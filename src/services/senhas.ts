@@ -36,7 +36,13 @@ export const recuperar = async (dados:
     return await handleRequest('/senhas/reset', dados);
 
 }
-
+export const alterarSenha = async (dados: {
+    senha_antiga: string,
+    senha_nova: string,
+    senha_nova_confimacao: string
+}) => {
+    return await handleRequest('/senhas/alterar', dados)
+}
 const handleRequest = async (endpoint: any, data: any) => {
     try {
         estado.silenciar = true;
