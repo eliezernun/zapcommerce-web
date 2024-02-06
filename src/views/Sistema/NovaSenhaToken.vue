@@ -82,7 +82,7 @@ export default {
                 }, 5000)
             }
         }
-        // validar()
+        validar()
     },
    
     methods: {

@@ -8,7 +8,9 @@ import RecuperarSenha from '@/views/Sistema/RecuperarSenha.vue'
 import AgendaMain from '@/views/agenda/AgendaMain.vue'
 import Clientes from '@/views/agenda/Clientes.vue'
 import Usuarios from '@/views/agenda/Usuarios.vue'
+import Colaboradores from '@/views/agenda/Colaboradores.vue'
 import NovaSenhaToken from '@/views/Sistema/NovaSenhaToken.vue'
+import BloqueioTokenVue from '@/views/Sistema/BloqueioToken.vue'
 import { Modulos } from '@/types/enums/modulos'
 
 const routes = [
@@ -30,6 +32,11 @@ const routes = [
     component: NovaSenhaToken
   },
   {
+    path: '/bloquear/:token',
+    props: true,
+    component: BloqueioTokenVue
+  },
+  {
     path: '/sistemas',
     component: Sistemas,
     meta: { autenticado: true }
@@ -41,15 +48,25 @@ const routes = [
     children: [
       {
         path: '/agenda/clientes',
-        component: Clientes
+        component: Clientes,
+        meta: { autenticado: true }
       },
       {
         path:'/agenda/colaboradores',
-        component: Usuarios
+        component: Colaboradores,
+        meta: { autenticado: true },
+        children: [
+          {
+            path: '/agenda/colaboradores/usuarios',
+            component: Usuarios,
+            meta: { autenticado: true }
+          }
+        ]
       },
       {
         path: '/agenda/usuarios',
-        component: Usuarios
+        component: Usuarios,
+        meta: { autenticado: true }
       }
     ]
   }

@@ -22,6 +22,9 @@ export const validarToken = async (token: string[] | string) => {
         return false;
     }
 }
+export const tokenBloqueio = async (token: string[] | string) => {
+   return await handleRequest(`/senhas/token-bloquear/${token}`, null);
+}
 export const tokenTrocaSenha = async (req: { senha: string, senha_confimacao: string, token: string | string[] }) => {
     return handleRequest('senhas/token/recuperar', req);
 }
