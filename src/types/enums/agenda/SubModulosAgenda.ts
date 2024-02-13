@@ -7,6 +7,6 @@ export enum SubModulosAgenda {
     USUARIOS = "USUARIOS",
     HISTORICO = "HISTORICO",
     MENSAGEM = "MENSAGEM",
-    CAIXA = "CAIXA"
+    CAIXA = "CAIXA",
 }
 

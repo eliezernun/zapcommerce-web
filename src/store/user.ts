@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { Usuario } from '@/types/user/usuario';
-import { Pessoa } from '@/types/pessoa/pessoa';
+import { colaboradores as Pessoa } from '@/types/pessoa/pessoa';
 import { LoginResponse } from '@/types/api/loginResponse';
 import { Empresa } from '@/types/empresa/empresa';
 import { AgendaPermicoes } from '@/types/permicoes/AgendaPermicoes';

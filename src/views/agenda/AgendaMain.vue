@@ -9,7 +9,7 @@
         </v-list-item>
         <v-divider></v-divider>
         <v-list density="compact" nav v-for="l in links">
-          <v-list-item :prepend-icon="l.icon" :title="l.text" :value="l.index" @click="handle(l.path)"> <v-tooltip
+          <v-list-item :prepend-icon="l.icon" :title="l.text" :value="l.index" @click="handle(l.path)"><v-tooltip
               activator="parent" location="start">{{ l.text }}</v-tooltip></v-list-item>
           <v-divider></v-divider>
         </v-list>
@@ -23,7 +23,7 @@
 </template>
 <script lang="ts">
 import { userStore } from '@/store/user'
-import type { Pessoa } from '@/types/pessoa/pessoa';
+import type { colaboradores  as Pessoa } from '@/types/pessoa/pessoa';
 import { AgendaLinksNavegacao } from '@/router/agenda/index'
 import { Route } from "@/types/router/route";
 import Perfil from "@/components/Perfil.vue"
@@ -70,4 +70,4 @@ export default {
   }
 }
 </script>
-<style></style>
+<style></style>@/types/pessoa/colaborador

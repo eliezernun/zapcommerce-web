@@ -17,7 +17,8 @@ function onRequestFullFilled(config: any) {
     }
 
     if (token && empresa_token) {
-        config.headers['Authorization'] = token || '';
+        config.headers['Access-Control-Allow-Origin'] = '*'
+        config.headers['Authorization'] = 'Bearer ' +  token || '';
         config.headers['X-Authorization'] = empresa_token || '';
     }
     return config;

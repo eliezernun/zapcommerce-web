@@ -12,7 +12,6 @@ import Vue3Toastify, { type ToastContainerOptions } from 'vue3-toastify';
 
 // Types
 import type { App } from 'vue'
-
 export function registerPlugins (app: App) {
   app
     .use(vuetify)
