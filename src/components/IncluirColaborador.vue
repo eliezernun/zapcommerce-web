@@ -4,10 +4,10 @@
             <v-card-title>Incluir novo colaborador:</v-card-title>
             <v-card-text>
                 <v-container>
-                    <v-text-field label="nome completo"></v-text-field>
-                    <v-text-field label="documento"></v-text-field>
-                    <v-text-field label="celular"></v-text-field>
-                    <v-text-field label="nascimento"></v-text-field>
+                    <v-text-field label="nome completo" v-model="colaborador.nome"></v-text-field>
+                    <v-text-field label="documento" v-model="colaborador.documento" @input="formatarDocumento"></v-text-field>
+                    <v-text-field label="celular" v-model="colaborador.celular"></v-text-field>
+                    <v-text-field label="nascimento" v-model="colaborador.nascimento" @input="formatDate"></v-text-field>
                 </v-container>
             </v-card-text>
             <v-card-actions>
@@ -20,6 +20,8 @@
 
 <script lang="ts">
 import { dateFormatter } from '@/utils/Date';
+import { formatarCPF } from '@/utils/documetos';
+import { throwStatement } from '@babel/types';
 
 export default {
     name: 'IncluirColaborador',
@@ -52,6 +54,11 @@ export default {
                 this.colaborador.nascimento = dateFormatter(inputValue);
             }
         },
+        formatarDocumento(){
+            if(this.colaborador.documento.length > 10){
+                this.colaborador.documento = formatarCPF(String(this.colaborador.documento))
+            }
+        }
     }
 }
 </script>
