@@ -11,25 +11,21 @@
                 </v-container>
             </v-card-text>
             <v-card-actions>
-                <v-spacer></v-spacer><v-btn color="green">Salvar</v-btn><v-spacer></v-spacer><v-btn
-                    color="red">cancelar</v-btn><v-spacer></v-spacer>
+                <v-spacer></v-spacer><v-btn color="green" @click="salvar">Salvar</v-btn><v-spacer></v-spacer><v-btn
+                    color="red" @click="fechar">cancelar</v-btn><v-spacer></v-spacer>
             </v-card-actions>
         </v-card>
     </v-row>
 </template>
 
 <script lang="ts">
-import { dateFormatter } from '@/utils/Date';
+import { incluirColaborador } from '@/services/colaboradores';
+import { dateFormatter, dateTimeFormatter } from '@/utils/Date';
 import { formatarCPF } from '@/utils/documetos';
-import { throwStatement } from '@babel/types';
+
 
 export default {
     name: 'IncluirColaborador',
-    props: {
-        principal: {
-            type: Boolean
-        },
-    },
     data() {
         return {
             colaborador: {
@@ -42,11 +38,20 @@ export default {
 
     },
     methods: {
-        updateExibir(newValue: any) {
-            this.$emit('update:exibir', newValue);
+        fechar() {
+            this.$emit('close');
         },
-        salvar() {
-
+        async salvar() {
+            let date = {
+                colaborador_nome: this.colaborador.nome,
+                colaborador_telefone: this.colaborador.celular,
+                colaborador_documento: this.colaborador.documento,
+                colaborador_nascimento: new Date(dateTimeFormatter(this.colaborador.nascimento))
+            };
+            let sucesso = await incluirColaborador(date);
+            if(sucesso){
+                this.fechar();
+            }
         },
         formatDate() {
             const inputValue = this.colaborador.nascimento.replace(/\D/g, ''); // Remove non-numeric characters

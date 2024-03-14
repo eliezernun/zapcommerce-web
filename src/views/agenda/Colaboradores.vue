@@ -13,7 +13,7 @@
                         <v-tooltip activator="parent" location="bottom center">Incluir um novo colaborador</v-tooltip>
                     </div>
                     <v-dialog v-model="inclusao">
-                        <IncluirColaborador :principal="principal" />
+                        <IncluirColaborador @close="fecharIncluir"/>
                     </v-dialog>
                 </v-toolbar>
             </template>
@@ -115,6 +115,9 @@ export default {
         },
         incluir() {
             this.inclusao = true;
+        },
+        fecharIncluir(){
+            this.inclusao = false;
         }
     },
     components: { IncluirColaborador }
@@ -126,7 +129,6 @@ export default {
     width: 80vw;
     height: 80vh;
 }
-
 .mr-10 {
     margin-right: 10px;
 }
